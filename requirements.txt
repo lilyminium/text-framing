@@ -1,5 +1,3 @@
-AmberLite==16.0
-AmberTools==17.0
 Click==7.0
 dash==1.8.0
 dash-bootstrap-components==0.8.1
@@ -15,10 +13,6 @@ gunicorn==20.0.4
 itsdangerous==1.1.0
 Jinja2==2.10.3
 MarkupSafe==1.1.1
-MMPBSA.py==16.0
-packmol-memgen==1.0.5rc0
-ParmEd==3.2.0
-pdb4amber==1.7.dev0
 plotly==4.5.0
 pyMSMT==19.0
 pytraj==2.0.5
