@@ -5,7 +5,6 @@ from dash.dependencies import Input, Output, State
 
 import dash_core_components as dcc
 import dash_html_components as html
-import plotly.graph_objs as gobs
 
 from data import frames
 from data.frames import Frame
@@ -31,16 +30,16 @@ app = dash.Dash(__name__,
 
 header = dbc.NavbarSimple(
     dbc.NavItem(dbc.NavLink("Source", href="#")),
-        # dbc.DropdownMenu(
-        #     children=[
-        #         dbc.DropdownMenuItem("More pages", header=True),
-        #         dbc.DropdownMenuItem("Page 2", href="#"),
-        #         dbc.DropdownMenuItem("Page 3", href="#"),
-        #     ],
-        #     nav=True,
-        #     in_navbar=True,
-        #     label="More",
-        # ),
+    # dbc.DropdownMenu(
+    #     children=[
+    #         dbc.DropdownMenuItem("More pages", header=True),
+    #         dbc.DropdownMenuItem("Page 2", href="#"),
+    #         dbc.DropdownMenuItem("Page 3", href="#"),
+    #     ],
+    #     nav=True,
+    #     in_navbar=True,
+    #     label="More",
+    # ),
     brand="Generating text headers",
     brand_href="#",
     color="primary",
