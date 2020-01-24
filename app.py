@@ -31,7 +31,8 @@ app.title = 'Text framing'
 # ======
 
 header = dbc.NavbarSimple(
-    dbc.NavItem(dbc.NavLink("Source", href="#")),
+    dbc.NavItem(dbc.NavLink(
+        "Source", href="https://github.com/lilyminium/text-framing")),
     # dbc.DropdownMenu(
     #     children=[
     #         dbc.DropdownMenuItem("More pages", header=True),
