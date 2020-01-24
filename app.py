@@ -60,6 +60,8 @@ Generate framed, centered text headers.
 
 Select some default options and edit the frame options,
 then click Generate text to get your frame.
+
+This works best on Firefox. 
 """, style={'margin': '20px'})
 
 text = dbc.FormGroup([
@@ -143,8 +145,12 @@ frame_card = dbc.Card([
                 dbc.Input(id='rhd', type='text')
             ]),
             dbc.Col([
-                dbc.Label('Vertical divider'),
-                dbc.Input(id='vd', type='text')
+                dbc.Label('Vertical divider (left)'),
+                dbc.Input(id='lvd', type='text')
+            ]),
+            dbc.Col([
+                dbc.Label('Vertical divider (right)'),
+                dbc.Input(id='rvd', type='text')
             ])
         ], align='center'),
     ]),
@@ -158,6 +164,8 @@ output = dbc.FormGroup([
                  style={'fontFamily': 'monospace'})
 ])
 
+footer = dbc.Label('© Copyright 2020, Lily Wang',
+                   style={'marginLeft': '20px'})
 
 # APP LAYOUT
 # ==========
@@ -180,6 +188,7 @@ app.layout = html.Div([
         html.H3('Output'),
         dbc.CardBody([output])
     ], style={'margin': '20px', 'padding': '10px'}),
+    footer
 ], )
 
 
@@ -192,12 +201,13 @@ app.layout = html.Div([
 @app.callback(
     [Output('tl', 'value'), Output('tm', 'value'), Output('tr', 'value'),
      Output('bl', 'value'), Output('bm', 'value'), Output('br', 'value'),
-     Output('vd', 'value'), Output('lhd', 'value'), Output('rhd', 'value')],
+     Output('lhd', 'value'), Output('rhd', 'value'),
+     Output('lvd', 'value'), Output('rvd', 'value'), ],
     [Input('frame-radio', 'value')]
 )
 def populate_cells(index):
     f = frames[index]
-    return f.tl, f.tm, f.tr, f.bl, f.bm, f.br, f.vd, f.lhd, f.rhd
+    return f.tl, f.tm, f.tr, f.bl, f.bm, f.br, f.lhd, f.rhd, f.lvd, f.rvd
 
 
 @app.callback(
@@ -207,14 +217,15 @@ def populate_cells(index):
      State('hspace', 'value'), State('vspace', 'value'),
      State('tl', 'value'), State('tm', 'value'), State('tr', 'value'),
      State('bl', 'value'), State('bm', 'value'), State('br', 'value'),
-     State('vd', 'value'), State('lhd', 'value'), State('rhd', 'value')]
+     State('lhd', 'value'), State('rhd', 'value'),
+     State('lvd', 'value'), State('rvd', 'value')]
 )
 def generate_text(nclicks, text, nh, nv, *args):
     if not text:
         text = ''
     strings = [x if x else '' for x in args]
-    tl, tm, tr, bl, bm, br, vd, lhd, rhd = strings
-    f = Frame([[tl, tm, tr], [bl, bm, br]], hd=(lhd, rhd), vd=vd)
+    tl, tm, tr, bl, bm, br, lhd, rhd, lvd, rvd = strings
+    f = Frame([[tl, tm, tr], [bl, bm, br]], hd=(lhd, rhd), vd=(lvd, rvd))
     return f.frame_text(text, hspace=nh, vspace=nv)
 
 

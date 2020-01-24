@@ -28,11 +28,18 @@ class Frame:
         if not self.rhd:
             self.rhd = ' '
 
-        if not vd:
-            vd = ' '
-        self.vd = vd
+        if isinstance(vd, str):
+            self.lvd = self.rvd = vd
+        else:
+            self.lvd, self.rvd = vd
+
+        if not self.lvd:
+            self.lvd = ' '
+        if not self.rvd:
+            self.rvd = ' '
+
         self.nh = len(self.tl) + len(self.tr) + len(self.tm)
-        self.nvd = len(self.vd) * 2
+        self.nvd = len(self.lvd) + len(self.rvd)
 
     def frame_text(self, text, hspace=1, vspace=0, bg=' '):
         text_lines = text.split('\n')
@@ -54,7 +61,7 @@ class Frame:
         bottom = self.bl + ldiv + self.bm + rdiv + self.br
         n_char = max(len(top), len(bottom))
 
-        empty_line = self.vd + bg*(n_char-self.nvd) + self.vd
+        empty_line = self.lvd + bg*(n_char-self.nvd) + self.rvd
 
         lines = [top] + [empty_line]*vspace
 
@@ -69,7 +76,7 @@ class Frame:
             else:
                 start = end = int(n_space / 2)
 
-            new_line = self.vd + bg*start + line + bg*end + self.vd
+            new_line = self.lvd + bg*start + line + bg*end + self.rvd
             lines.append(new_line)
 
         lines += [empty_line]*vspace
