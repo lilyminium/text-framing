@@ -1,7 +1,6 @@
 # Text Headers
 
-[! https://img.shields.io/github/license/lilyminium/textheaders] [! https://img.shields.io/badge/Made%20at-Starschema-red]
-Make text headers.
+Make text headers at [https://text-framing.herokuapp.com/](https://text-framing.herokuapp.com/).
 
 
 ## Running locally
