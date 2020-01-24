@@ -25,6 +25,8 @@ app = dash.Dash(__name__,
                 external_scripts=external_scripts,
                 server=server)
 
+app.title = 'Text framing'
+
 # HEADER
 # ======
 
